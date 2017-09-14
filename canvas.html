@@ -1,0 +1,57 @@
+<!---
+Author: Từ Minh Hiếu
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body{
+			margin:0;
+		}
+		canvas{
+			//background-color: blue;
+		}
+		.toado{
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<div class="toado">
+		<p id="clientx"></p>
+		<p id="clienty"></p>
+	</div>
+	<canvas></canvas>
+	
+	<script type="text/javascript">
+		window.onload = function(){
+			
+			var canvas = document.getElementsByTagName("canvas")[0];
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+			var ctx = canvas.getContext("2d");
+
+			var hienthix = document.getElementById("clientx");
+			var hienthiy = document.getElementById("clienty");
+
+			addEventListener("mousemove",function(event){
+				ctx.beginPath();
+				//Draw line x
+				ctx.clearRect(0,0,innerWidth,innerHeight);
+				ctx.moveTo(innerWidth,event.clientY);
+				ctx.lineTo(0,event.clientY);
+				//Draw line y
+				ctx.moveTo(event.clientX,innerHeight);
+				ctx.lineTo(event.clientX,0);
+				ctx.stroke();
+				//console.log(event.clientX+"|" +event.clientY);
+				hienthix.innerHTML = "X:"+event.clientX;
+				hienthiy.innerHTML = "Y:"+event.clientY;
+			});
+		}
+	</script>
+</body>
+</html>
